@@ -4,8 +4,6 @@
 #ifndef FOODITEM_H
 #define FOODITEM_H
 
-using namespace std;
-
 class fooditem
 {
 

@@ -13,7 +13,6 @@ int main() {
 
 	map<string, int> places;
 	
-	places.insert(
 
 
 	while (true) {
@@ -24,9 +23,7 @@ int main() {
 
 		// Example from http://stackoverflow.com/questions/236129/how-to-split-a-string-in-c
 		vector<string> tokens;
-		copy(istream_iterator<string>(iss),
-				 istream_iterator<string>(),
-				 back_inserter<vector<string> >(tokens));
+		copy(istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(tokens));
 		// End of example
 
 		if (tokens.size() != 0) {
