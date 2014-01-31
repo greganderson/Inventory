@@ -5,15 +5,17 @@
 #include <vector>
 #include <map>
 
+
 using namespace std;
 
 int main() {
-	string filename = "data3.txt";
+	string filename = "data1.txt";
 	ifstream in(filename.c_str());
 
-	map<string, int> places;
+	map<string, string> fooditem;
+	map<string, int> quantity;
 	
-
+	//inventory inv;
 
 	while (true) {
 		string line;
@@ -29,6 +31,9 @@ int main() {
 		if (tokens.size() != 0) {
 			if (tokens[0] == "FoodItem") {
 				// TODO: Implement
+
+			  fooditem[tokens[4]] = tokens[9];
+			  quantity[tokens[4]] =  atoi((tokens[7]).c_str());
 			}
 			if (tokens[0] == "Warehouse") {
 				string place = "";

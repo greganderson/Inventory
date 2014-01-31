@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
+#include <queue>
 #include "fooditem.h"
 
 
 using namespace std;
+
 
 fooditem::fooditem()
 {
@@ -43,3 +45,4 @@ int fooditem::getSLife()
 {
   return this-> shelf_life;
 }
+
