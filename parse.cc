@@ -4,19 +4,26 @@
 #include <fstream>
 #include <vector>
 #include "warehouse.h"
+#include "warehouses.h"
 #include "item.h"
+#include "fooditems.h"
 #include <cstdlib>
 #include <map>
 
 using namespace std;
 
 int main() {
-	string filename = "data1.txt";
+	string filename = "data/data1.txt";
 	ifstream in(filename.c_str());
 
-	//The items will be mapped out to as the key being the
-	// upc and the value being the contents of that item.
-	//map<string, fooditems*> *items = new map<string, fooditems*>;
+
+
+	fooditems fooditems1;
+
+	//The list of the warehouses.
+	warehouses WH(fooditems1);
+
+	
 
 	while (true) {
 		string line;
@@ -37,8 +44,11 @@ int main() {
 			  //This will add the elements of the item to the food item class.
 			  item item1(tokens[4], atoi((tokens[7]).c_str()), tokens[9]);
 	        
-		       
+			  //The list of the food items
+			  // fooditems fooditems1;	       
+
 			  //Add to the Fooditems class.
+			  fooditems1.addItem(tokens[4], item1);
 			  
 			}
 			if (tokens[0] == "Warehouse") {
@@ -46,17 +56,30 @@ int main() {
 				for (int i = 2; i < tokens.size(); i++) {
 					place += tokens[i] + " ";
 				}
-				cout << place << endl;
+				//Make the new Warehouse and tell it what food items it could have.
+				warehouse Warehouse(place, fooditems1);
+			        
 			}
-			if (tokens[0] == "Receive:") {
-				// TODO: Implement
-			}
+			if(tokens[0] == "Receive:"){
+			        //This is not working because the get function is constant.
+			        WH.getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
+			  
+			  }
 			if (tokens[0] == "Request:") {
-				// TODO: Implement
+				//Not working because get is constant.
+			        WH.getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
+			}
+			//Advance the effective date by one day.
+			if(tokens[0] == "Next"){
+			        //
+			  
+			}
+			if(tokens[0] == "End:"){
+			  break;
 			}
 		}
 
-		  //queue<string> *q = new queue<string>;
+		  //Queue<string> *q = new queue<string>;
 		  //map<string, queue<string>* > *mq = new map<string, queue<string>* >;
  
 		  //q->push("Hello");
