@@ -20,8 +20,8 @@ class warehouse {
 		
 	public:
 		warehouse(std::string, fooditems &);
-		~warehouse();
 		void receive(std::string upc, int amount);
 		void request(std::string upc, int amount);
+		void clearInventory();
 };
 #endif

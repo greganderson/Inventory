@@ -16,13 +16,6 @@ warehouse::warehouse(string _name, fooditems & f) {
 }
 
 /*
- * Destructs the warehouse and its inventory.
- */
-warehouse::~warehouse() {
-	// TODO: Implement
-}
-
-/*
  * Receive the number of items into the warehouse.  If it
  * hasn't been created yet, then it is created.
  */
@@ -53,5 +46,31 @@ void warehouse::request(string upc, int amount) {
 			return;
 
 		(*inventory)[upc]->pop();
+	}
+}
+
+/*
+ * Goes through all inventory and reduces the items
+ * remaining time by one day.  If something expires
+ * (has 0 remaining days), it is removed from the queue.
+ */
+void warehouse::clearInventory() {
+	int count;	// Number of items inside a queue
+
+	// Loop over all of the queues
+	for (map<string, queue<int>* >::iterator it = inventory->begin(); it != inventory->end(); ++it) {
+		count = (it->second)->size();
+		for (int i = 0; i < count; i++) {
+			// Get remaining days
+			int x = (it->second)->front();
+			(it->second)->pop();
+
+			// Decrement remaining days
+			x--;
+
+			// Check if item expired, adding it back if it hasn't
+			if (x != 0)
+				(it->second)->push(x);
+		}
 	}
 }
