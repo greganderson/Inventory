@@ -13,6 +13,7 @@ class item
 
 
 	public:
+		item();
 		item(std::string upc, int sl, std::string name);
 		std::string getUpc();
 		int getShelfLife();

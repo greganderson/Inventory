@@ -3,6 +3,13 @@
 
 using namespace std;
 
+
+item::item()
+{
+  upc = "";
+  shelfLife = 0;
+  shelfLife = "";
+}
 item::item(string upc, int shelfLife, string name)
 {
 	this->upc = upc;
