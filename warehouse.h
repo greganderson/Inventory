@@ -1,23 +1,23 @@
-#include <iostream>
 #include <string>
-#include <queue>
 #include <map>
+#include <queue>
 
-using namespace std;
+#ifndef WAREHOUSE_H
+#define WAREHOUSE_H
 
-class warehouse
-{
+class inventory;
 
- private:
-  string name;
-  vector<string> items;
-  map<string, vector<string> > wh;
+class warehouse {
 
- public:
-  warehouse();
-  void addWarehouse(string name);
-  void addItem(std::string name, std::string upc);
-  void receive(string upc, int amount);
-  void request(string upc, int amount);
 
+	private:
+		std::map<std::string, std::queue<int>* > *inventory;	// Map of items, <UPC => Inventory>
+		std::string name;
+		
+	public:
+		warehouse(std::string);
+		~warehouse();
+		void receive(std::string upc, int amount);
+		void request(std::string upc, int amount);
 };
+#endif
