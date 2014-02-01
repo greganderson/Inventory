@@ -8,7 +8,7 @@
 
 using namespace std;
 
-warehouses::warehouses(string name) {
+warehouses::warehouses() {
 }
 
 void warehouses::addWarehouse(string name) {

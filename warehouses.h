@@ -10,11 +10,10 @@ class warehouses
 {
 
 	private:
-		std::string name;
-		std::map<std::string, std::map<std::string, std::queue<std::string>* >* > whs;
+		std::map<std::string, std::map<std::string, std::queue<int>* >* > whs;
 
 	public:
-		warehouses(std::string);
+		warehouses();
 		void addWarehouse(std::string name);
 
 };
