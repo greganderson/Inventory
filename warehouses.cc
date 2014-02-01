@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "warehouses.h"
-#include "warehouse.h"
 
 
 using namespace std;
@@ -13,7 +12,8 @@ using namespace std;
 /*
  * Creates a list of warehouses.
  */
-warehouses::warehouses() {
+warehouses::warehouses(fooditems & f) {
+	*items = f;
 	whs = new map<string, warehouse*>;
 }
 
@@ -28,7 +28,7 @@ warehouses::~warehouses() {
  * Takes a name of a warehouse and adds it to the list of warehouses.
  */
 void warehouses::addWarehouse(string name) {
-	(*whs)[name] = new warehouse(name);
+	(*whs)[name] = new warehouse(name, *items);
 }
 
 /*

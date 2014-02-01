@@ -9,8 +9,9 @@ using namespace std;
 /*
  * Creates a warehouse with the name given.
  */
-warehouse::warehouse(string _name) {
+warehouse::warehouse(string _name, fooditems & f) {
 	name = _name;
+	*items = f;
 	inventory = new map<string, queue<int>* >;
 }
 
@@ -26,7 +27,15 @@ warehouse::~warehouse() {
  * hasn't been created yet, then it is created.
  */
 void warehouse::receive(string upc, int amount) {
-	//
+	int sLife = items->getItem(upc).shelfLife;
+
+	// Check if inventory item hasn't bee created yet
+	if ((*inventory)[upc] == NULL)
+		(*inventory)[upc] = new queue<int>;
+
+	// Loop through and add the items to the inventory
+	for (int i = 0; i < amount; i++)
+		(*inventory)[upc]->push(sLife);
 }
 
 /*

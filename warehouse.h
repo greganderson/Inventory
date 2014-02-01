@@ -2,10 +2,13 @@
 #include <map>
 #include <queue>
 
+#include "fooditems.h"
+#include "items.h"
+
 #ifndef WAREHOUSE_H
 #define WAREHOUSE_H
 
-class inventory;
+class item;
 
 class warehouse {
 
@@ -13,9 +16,10 @@ class warehouse {
 	private:
 		std::map<std::string, std::queue<int>* > *inventory;	// Map of items, <UPC => Inventory>
 		std::string name;
+		fooditems *items;
 		
 	public:
-		warehouse(std::string);
+		warehouse(std::string, fooditems &);
 		~warehouse();
 		void receive(std::string upc, int amount);
 		void request(std::string upc, int amount);
