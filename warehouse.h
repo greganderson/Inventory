@@ -8,11 +8,12 @@
 class warehouse {
 
 	private:
-		std::map<std::string, std::queue<int>* > inventory;	// Map of items, <UPC => Inventory
+		std::map<std::string, std::queue<int>* > *inventory;	// Map of items, <UPC => Inventory
 		std::string name;
 		
 	public:
 		warehouse(std::string);
+		~warehouse();
 		void receive(std::string upc, int amount);
 		void request(std::string upc, int amount);
 };
