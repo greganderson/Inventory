@@ -1,11 +1,11 @@
-#include <iostream>
 #include <string>
 
 #ifndef ITEM_H
 #define ITEM_H
 class item
 {
-	friend class warehouse.h
+	friend class warehouse.h;
+
 	private:
 		std::string upc;
 		int shelfLife;

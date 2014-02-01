@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include "fooditems.h"
 #include <map>
@@ -8,15 +7,15 @@ using namespace std;
 class item;
 fooditems::fooditems()
 {
-  fimap = new std::map<string, item>;
+	fimap = new std::map<string, item>;
 }
 
 
 void fooditems::addItem(string upc, const item& itm)
 {
 
-  //item item1 = new item(itm);
-  (*fimap)[upc] = itm;
+	//item item1 = new item(itm);
+	(*fimap)[upc] = itm;
 
 }
 
@@ -26,5 +25,5 @@ void fooditems::addItem(string upc, const item& itm)
  */
 item& fooditems::getItem(string upc)
 {
-  return (*fimap)[upc];
+	return (*fimap)[upc];
 }
