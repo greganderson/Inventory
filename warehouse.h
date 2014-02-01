@@ -4,6 +4,7 @@
 
 #include "fooditems.h"
 #include "item.h"
+#include "date.h"
 
 #ifndef WAREHOUSE_H
 #define WAREHOUSE_H
@@ -15,13 +16,16 @@ class warehouse {
 
 	private:
 		std::map<std::string, std::queue<int>* > *inventory;	// Map of items, <UPC => Inventory>
-		std::string name;
-		fooditems *items;
+		std::string name;	// Name of warehouse
+		fooditems *items;	// List of fooditems
+		int busiestDay;		// Busiest day seen so far
+		int currentDay;		// Amount of transactions seen on current day
+		date *busiestDate;	// The actual date of the busiest day
 		
 	public:
-		warehouse(std::string, fooditems &);
-		~warehouse();
+		warehouse(std::string, fooditems &, date &);
 		void receive(std::string upc, int amount);
 		void request(std::string upc, int amount);
+		void clearInventory();
 };
 #endif

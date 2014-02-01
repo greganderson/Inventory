@@ -9,17 +9,13 @@ using namespace std;
 /*
  * Creates a warehouse with the name given.
  */
-warehouse::warehouse(string _name, fooditems & f) {
+warehouse::warehouse(string _name, fooditems & f, date & d) {
 	name = _name;
 	*items = f;
+	busiestDay = 0;
+	*busiestDate = d;
+	currentDay = 0;
 	inventory = new map<string, queue<int>* >;
-}
-
-/*
- * Destructs the warehouse and its inventory.
- */
-warehouse::~warehouse() {
-	// TODO: Implement
 }
 
 /*
@@ -27,6 +23,9 @@ warehouse::~warehouse() {
  * hasn't been created yet, then it is created.
  */
 void warehouse::receive(string upc, int amount) {
+	// Add number of items received to current day transactions
+	currentDay += amount;
+
 	int sLife = items->getItem(upc).shelfLife;
 
 	// Check if inventory item hasn't been created yet
@@ -43,6 +42,9 @@ void warehouse::receive(string upc, int amount) {
  * are no items left, nothing happens.
  */
 void warehouse::request(string upc, int amount) {
+	// Add number of requests to current day transactions
+	currentDay += amount;
+
 	// Check if inventory item hasn't been created yet
 	if ((*inventory)[upc] == NULL)
 		return;
@@ -54,4 +56,39 @@ void warehouse::request(string upc, int amount) {
 
 		(*inventory)[upc]->pop();
 	}
+}
+
+/*
+ * Goes through all inventory and reduces the items
+ * remaining time by one day.  If something expires
+ * (has 0 remaining days), it is removed from the queue.
+ */
+void warehouse::clearInventory() {
+	int count;	// Number of items inside a queue
+
+	// Loop over all of the queues
+	for (map<string, queue<int>* >::iterator it = inventory->begin(); it != inventory->end(); ++it) {
+		count = (it->second)->size();
+		for (int i = 0; i < count; i++) {
+			// Get remaining days
+			int x = (it->second)->front();
+			(it->second)->pop();
+
+			// Decrement remaining days
+			x--;
+
+			// Check if item expired, adding it back if it hasn't
+			if (x != 0)
+				(it->second)->push(x);
+		}
+	}
+
+	// Check if we had a busier day than the busiest seen so far
+	if (currentDay >= busiestDay) {
+		busiestDay = currentDay;
+		// TODO: Set busiestDate to today
+	}
+
+	// Reset the transaction counter
+	currentDay = 0;
 }
