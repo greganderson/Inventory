@@ -42,7 +42,7 @@ void warehouse::receive(string upc, int amount) {
  * Remove the number of items from the warehouse.  If there
  * are no items left, nothing happens.
  */
-void request(string upc, int amount) {
+void warehouse::request(string upc, int amount) {
 	// Check if inventory item hasn't been created yet
 	if ((*inventory)[upc] == NULL)
 		return;
