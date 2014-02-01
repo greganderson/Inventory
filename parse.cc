@@ -10,15 +10,6 @@
 
 using namespace std;
 
-struct Items
-{
-
-  string upc;
-  int shelfLife;
-  string name;
-
-};
-
 int main() {
 	string filename = "data1.txt";
 	ifstream in(filename.c_str());
@@ -35,9 +26,7 @@ int main() {
 
 		// Example from http://stackoverflow.com/questions/236129/how-to-split-a-string-in-c
 		vector<string> tokens;
-		copy(istream_iterator<string>(iss),
-				 istream_iterator<string>(),
-				 back_inserter<vector<string> >(tokens));
+		copy(istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(tokens));
 		// End of example
 
 		if (tokens.size() != 0) {
@@ -53,21 +42,20 @@ int main() {
 			  
 			}
 			if (tokens[0] == "Warehouse") {
-
+				string place = "";
 				for (int i = 2; i < tokens.size(); i++) {
-					// TODO: Implement
+					place += tokens[i] + " ";
 				}
+				cout << place << endl;
 			}
 			if (tokens[0] == "Receive:") {
 				// TODO: Implement
-			  
 			}
 			if (tokens[0] == "Request:") {
-			  	// TODO: Implement
+				// TODO: Implement
 			}
 		}
 
-		{
 		  //queue<string> *q = new queue<string>;
 		  //map<string, queue<string>* > *mq = new map<string, queue<string>* >;
  
@@ -77,6 +65,16 @@ int main() {
  
 		  // for (map<string, fooditems >::iterator it = items->begin(); it != items->end(); ++it) {
 		  //   cout << "[" << it->first << ", " << (it->second).getName() << "]" << endl;
+		/*
+		for (int i = 0; i < tokens.size(); i++) {
+			if (tokens[i] == "FoodItem") {
+				cout << "UPC: " << tokens[4] << endl;
+				cout << "Shelf Life: " << tokens[7] << endl;
+				cout << "Name: ";
+				for (int j = 9; j < tokens.size(); j++)
+					cout << tokens[j] << " ";
+				cout << endl;
+			}
 		  // }
  
 		  //cout << (*items)["0353264991"].getName() << endl;
