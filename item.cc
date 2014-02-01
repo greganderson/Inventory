@@ -2,7 +2,26 @@
 #include <string>
 #include "item.h"
 
-item::item(std::string upc, int shelfLife, std::string name)
+using namespace std;
+
+item::item()
+{
+    upc = "";
+    shelfLife = 0;
+    name = "";
+}
+
+//Copy constructor.
+item::item(const item & other)
+{
+  this->upc = other.upc;
+  this->shelfLife = other.shelfLife;
+  this->name = other.name;
+  *this = other;
+
+}
+
+item::item(string upc, int shelfLife, string name)
 {
 	this-> upc = upc;
 	this-> shelfLife = shelfLife;

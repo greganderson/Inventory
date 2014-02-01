@@ -5,12 +5,9 @@
 #define ITEM_H
 class item
 {
-
 	friend class warehouse.h
-
 	private:
-		item();
-		std::string upc ;
+		std::string upc;
 		int shelfLife;
 		std::string name;
 
@@ -20,6 +17,5 @@ class item
 		std::string getUpc();
 		int getShelfLife();
 		std::string getName();
-
 };
 #endif
