@@ -13,9 +13,11 @@ warehouse::warehouse(string _name, fooditems & f, date & d) {
 	name = _name;
 	*items = f;
 	busiestDay = 0;
-	*busiestDate = d;
+	*startDate = d;
+	busiestDate = new date(startDate->getDate());
 	currentDay = 0;
 	inventory = new map<string, queue<int>* >;
+	daysSinceBusiestDate = 0;
 }
 
 /*
@@ -64,6 +66,8 @@ void warehouse::request(string upc, int amount) {
  * (has 0 remaining days), it is removed from the queue.
  */
 void warehouse::clearInventory() {
+	daysSinceBusiestDate++;
+
 	int count;	// Number of items inside a queue
 
 	// Loop over all of the queues
@@ -86,7 +90,9 @@ void warehouse::clearInventory() {
 	// Check if we had a busier day than the busiest seen so far
 	if (currentDay >= busiestDay) {
 		busiestDay = currentDay;
-		// TODO: Set busiestDate to today
+		for (int i = 0; i < daysSinceBusiestDate; i++)
+			busiestDate->advanceDate();
+		daysSinceBusiestDate = 0;
 	}
 
 	// Reset the transaction counter
