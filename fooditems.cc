@@ -1,23 +1,22 @@
-#include <isostream>
+#include <iostream>
 #include <string>
+#include "fooditems.h"
+#include <map>
 
+using namespace std;
 
-fooditem::fooditem()
+class item;
+
+fooditems::fooditems()
 {
-  
-  map<string, item> *fimap = new map<string, item>;
-
+  fimap = new std::map<string, item>;
 }
 
-fooditem::~fooditem()
-{
-  delete *fimap;
-}
 
-item fooditem::addItem(string upc, item itm)
+void fooditems::addItem(string upc, item itm)
 {
   
-  *fimap[upc] = itm;
+  fimap[upc] = itm;
 
 }
 
@@ -25,7 +24,7 @@ item fooditem::addItem(string upc, item itm)
  * Provided a upc, the function will return the item 
  * corresposnding to that upc.
  */
-item fooditem::getItem(string upc)
+item fooditems::getItem(string upc)
 {
   return (*fimap)[upc];
 }
