@@ -9,6 +9,9 @@ class date {
 		date(std::string);
 		std::string getDate();
 		bool isEarlier(const date &) const;
+		void advanceDate();
+		void advanceDay(int);
+		void advanceMonth();
 	private:
 		int month;
 		int day;

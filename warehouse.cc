@@ -9,9 +9,12 @@ using namespace std;
 /*
  * Creates a warehouse with the name given.
  */
-warehouse::warehouse(string _name, fooditems & f) {
+warehouse::warehouse(string _name, fooditems & f, date & d) {
 	name = _name;
 	*items = f;
+	busiestDay = 0;
+	*busiestDate = d;
+	currentDay = 0;
 	inventory = new map<string, queue<int>* >;
 }
 
@@ -20,6 +23,9 @@ warehouse::warehouse(string _name, fooditems & f) {
  * hasn't been created yet, then it is created.
  */
 void warehouse::receive(string upc, int amount) {
+	// Add number of items received to current day transactions
+	currentDay += amount;
+
 	int sLife = items->getItem(upc).shelfLife;
 
 	// Check if inventory item hasn't been created yet
@@ -36,6 +42,9 @@ void warehouse::receive(string upc, int amount) {
  * are no items left, nothing happens.
  */
 void warehouse::request(string upc, int amount) {
+	// Add number of requests to current day transactions
+	currentDay += amount;
+
 	// Check if inventory item hasn't been created yet
 	if ((*inventory)[upc] == NULL)
 		return;
@@ -73,4 +82,13 @@ void warehouse::clearInventory() {
 				(it->second)->push(x);
 		}
 	}
+
+	// Check if we had a busier day than the busiest seen so far
+	if (currentDay >= busiestDay) {
+		busiestDay = currentDay;
+		// TODO: Set busiestDate to today
+	}
+
+	// Reset the transaction counter
+	currentDay = 0;
 }
