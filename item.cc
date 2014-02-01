@@ -4,31 +4,23 @@
 
 fooditems::item(string upc, int shelfLife, string name)
 {
-  
-  this-> upc = upc;
-  this-> shelfLife = shelfLife;
-  this-> name = name;
-
+	this-> upc = upc;
+	this-> shelfLife = shelfLife;
+	this-> name = name;
 }
 
 string fooditems::getUpc()
 {
-
-  return upc;
-
+	return upc;
 }
 
 string fooditems::getShelfLife()
 {
-
-  return shelfLife;
-
+	return shelfLife;
 }
 
 string fooditems::getName()
 {
-
-  return name;
-
+	return name;
 }
 
