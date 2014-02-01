@@ -1,9 +1,4 @@
-#include <iostream>
-#include <string>
-#include <map>
-#include <cstdlib>
-#include <inventory.h>
-#include <utility>
+#include "inventory.h"
 
 using namespace std;
 
