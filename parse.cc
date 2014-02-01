@@ -80,6 +80,7 @@ int main() {
 		  //cout << (*items)["0353264991"].getName() << endl;
  
 		}
+		*/
 
 		if (in.fail())
 			break;
