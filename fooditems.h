@@ -1,15 +1,18 @@
 #include <iostream>
 #include <string>
+#include <map>
 
 class fooditems
 {
-  friend class item.h;
+  class item;
+
  public:
   fooditems();
-  void addItem(std::string upc, std::item itm)
+  void addItem(std::string upc, item itm);
+  item getItem(std::string upc);
 
  private:
-    map<string, item> *fimap;
+  std::map<std::string, item> *fimap;
 
-}
+};
 
