@@ -16,8 +16,14 @@ date::date(int _month, int _day, int _year) {
 /*
  * Creates a new date out of the string.  Assumes it is formatted correctly.
  */
-date::date(string d) {
-	// TODO: Implement
+date::date(string s) {
+	string m = s.substr(0,2);
+	string d = s.substr(3,2);
+	string y = s.substr(6,4);
+
+	this->month = (m[0] - '0') * 10 + (m[1] - '0') * 1;
+	this->day = (d[0] - '0') * 10 + (d[1] - '0') * 1;
+	this->year = (y[0] - '0') * 1000 + (y[1] - '0') * 100 + (y[2] - '0') * 10 + (y[3] - '0') * 1;
 }
 
 /*
