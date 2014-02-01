@@ -26,7 +26,7 @@ warehouse::~warehouse() {
  * hasn't been created yet, then it is created.
  */
 void warehouse::receive(string upc, int amount) {
-	// TODO: Implement
+	//
 }
 
 /*
