@@ -14,6 +14,13 @@ date::date(int _month, int _day, int _year) {
 }
 
 /*
+ * Creates a new date out of the string.  Assumes it is formatted correctly.
+ */
+date::date(string d) {
+	// TODO: Implement
+}
+
+/*
  * Returns the date as mm/dd/yyyy
  */
 string date::getDate() {
