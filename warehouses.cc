@@ -17,6 +17,9 @@ warehouses::warehouses() {
 	whs = new map<string, warehouse*>;
 }
 
+/*
+ * Destructs the list of warehouses.
+ */
 warehouses::~warehouses() {
 	// TODO: Implement
 }

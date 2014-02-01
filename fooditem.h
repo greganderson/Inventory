@@ -7,23 +7,18 @@
 
 using namespace std;
 
+
 class fooditem
 {
 	public:
-		//void fooditem(string upc_code, int shelf_life, string name);
-		fooditem();
-		void upc(string upc_code);
-		void s_life(int shelf_life);
-		void Name(string name);
-		string getUPC();
-		string getName();
-		int getSLife();
-		void Items(string upc, int sLife, string name);
-		/* friend Rectangle duplicate (const Rectangle&) */;
-
+		fooditem(string upc_code, int shelf_life, string name);
+		~fooditem();
+		std::string getUPC();
+		std::string getName();
+		int getShelfLife();
 
 	private:
-		string upc_code;
+		string upc;
 		int shelf_life;
 		string name;
 

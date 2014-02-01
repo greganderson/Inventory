@@ -5,10 +5,13 @@
 #ifndef WAREHOUSE_H
 #define WAREHOUSE_H
 
+class inventory;
+
 class warehouse {
 
+
 	private:
-		std::map<std::string, std::queue<int>* > *inventory;	// Map of items, <UPC => Inventory
+		std::map<std::string, std::queue<int>* > *inventory;	// Map of items, <UPC => Inventory>
 		std::string name;
 		
 	public:

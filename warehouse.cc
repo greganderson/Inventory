@@ -15,7 +15,7 @@ warehouse::warehouse(string _name) {
 }
 
 /*
- * Destructs the warehouse.
+ * Destructs the warehouse and its inventory.
  */
 warehouse::~warehouse() {
 	// TODO: Implement
