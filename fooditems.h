@@ -2,6 +2,8 @@
 #include <map>
 #include "item.h"
 
+#ifndef FOODITEMS_H
+#define FOODITEMS_H
 class fooditems
 {
 
@@ -15,3 +17,4 @@ class fooditems
 
 };
 
+#endif
