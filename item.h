@@ -4,7 +4,7 @@
 #define ITEM_H
 class item
 {
-	friend class warehouse.h;
+	friend class warehouse;
 
 	private:
 		std::string upc;
