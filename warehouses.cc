@@ -12,8 +12,9 @@ using namespace std;
 /*
  * Creates a list of warehouses.
  */
-warehouses::warehouses(fooditems & f) {
+warehouses::warehouses(fooditems & f, date & startDate) {
 	*items = f;
+	*start = startDate;
 	whs = new map<string, warehouse*>;
 }
 
@@ -28,7 +29,7 @@ warehouses::~warehouses() {
  * Takes a name of a warehouse and adds it to the list of warehouses.
  */
 void warehouses::addWarehouse(string name) {
-	(*whs)[name] = new warehouse(name, *items);
+	(*whs)[name] = new warehouse(name, *items, *start);
 }
 
 /*
