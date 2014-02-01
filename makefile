@@ -1,2 +1,2 @@
-compile: parse2.cc fooditem.cc fooditem.h inventory.cc inventory.h warehouses.cc warehouses.h warehouse.cc warehouse.h
-	g++ parse2.cc fooditem.cc inventory.cc warehouses.cc warehouse.cc
+compile: parse.cc fooditems.cc fooditems.h warehouses.cc warehouses.h warehouse.cc warehouse.h date.cc date.h item.cc item.h
+	g++ parse.cc fooditems.cc warehouses.cc warehouse.cc date.cc item.cc

@@ -29,7 +29,7 @@ warehouse::~warehouse() {
 void warehouse::receive(string upc, int amount) {
 	int sLife = items->getItem(upc).shelfLife;
 
-	// Check if inventory item hasn't bee created yet
+	// Check if inventory item hasn't been created yet
 	if ((*inventory)[upc] == NULL)
 		(*inventory)[upc] = new queue<int>;
 
@@ -43,5 +43,15 @@ void warehouse::receive(string upc, int amount) {
  * are no items left, nothing happens.
  */
 void request(string upc, int amount) {
-	// TODO: Implement
+	// Check if inventory item hasn't been created yet
+	if ((*inventory)[upc] == NULL)
+		return;
+
+	for (int i = 0; i < amount; i++) {
+		// If queue is empty, break out and be done with it
+		if ((*inventory)[upc]->empty())
+			return;
+
+		(*inventory)[upc]->pop();
+	}
 }

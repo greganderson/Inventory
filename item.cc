@@ -1,25 +1,25 @@
 #include <iostream>
 #include <string>
-#include "fooditems.h"
+#include "item.h"
 
-fooditems::item(string upc, int shelfLife, string name)
+item::item(std::string upc, int shelfLife, std::string name)
 {
 	this-> upc = upc;
 	this-> shelfLife = shelfLife;
 	this-> name = name;
 }
 
-string fooditems::getUpc()
+std::string item::getUpc()
 {
 	return upc;
 }
 
-string fooditems::getShelfLife()
+int item::getShelfLife()
 {
 	return shelfLife;
 }
 
-string fooditems::getName()
+std::string item::getName()
 {
 	return name;
 }
