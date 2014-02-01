@@ -6,17 +6,17 @@
 using namespace std;
 
 class item;
-
 fooditems::fooditems()
 {
   fimap = new std::map<string, item>;
 }
 
 
-void fooditems::addItem(string upc, item itm)
+void fooditems::addItem(string upc, const item& itm)
 {
-  
-  fimap[upc] = itm;
+
+  //item item1 = new item(itm);
+  (*fimap)[upc] = itm;
 
 }
 
@@ -24,7 +24,7 @@ void fooditems::addItem(string upc, item itm)
  * Provided a upc, the function will return the item 
  * corresposnding to that upc.
  */
-item fooditems::getItem(string upc)
+item& fooditems::getItem(string upc)
 {
   return (*fimap)[upc];
 }

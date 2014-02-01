@@ -1,21 +1,19 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
-class items
+class item
 {
-
-friend class warehouse.h
-
  private:
-  item();
-  string upc ;
+  std::string upc;
   int shelfLife;
-  string name;
-
+  std::string name;
 
  public:
-  item(string upc, int sl, string name);
+  item();
+  item(std::string upc, int shelflife, std::string name);
+  item(const item & other);
+  std::string getUpc();
+  int getShelfLife();
+  std::string getName();
 
 };
