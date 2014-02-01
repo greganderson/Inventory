@@ -8,7 +8,7 @@ item::item()
 {
   upc = "";
   shelfLife = 0;
-  shelfLife = "";
+  name = "";
 }
 item::item(string upc, int shelfLife, string name)
 {
