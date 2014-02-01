@@ -35,6 +35,6 @@ void warehouses::addWarehouse(string name) {
 /*
  * Returns the warehouse asked for.
  */
-const warehouse & warehouses::getWarehouse(string name) {
+warehouse & warehouses::getWarehouse(string name) {
 	return *(*whs)[name];
 }

@@ -22,7 +22,7 @@ class warehouses
 		warehouses(fooditems &, date &);
 		~warehouses();
 		void addWarehouse(std::string name);
-		const warehouse & getWarehouse(std::string name);
+		warehouse & getWarehouse(std::string name);
 
 };
 #endif

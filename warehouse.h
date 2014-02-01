@@ -20,7 +20,9 @@ class warehouse {
 		fooditems *items;	// List of fooditems
 		int busiestDay;		// Busiest day seen so far
 		int currentDay;		// Amount of transactions seen on current day
+		date *startDate;	// Start date
 		date *busiestDate;	// The actual date of the busiest day
+		int daysSinceBusiestDate;	// Number of days since the last busiest date
 		
 	public:
 		warehouse(std::string, fooditems &, date &);
