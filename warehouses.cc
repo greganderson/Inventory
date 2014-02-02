@@ -1,3 +1,7 @@
+/*
+ * Written by Greg Anderson and Jesus Zarate.
+ */
+
 #include <iostream>
 #include <string>
 #include <queue>
@@ -42,7 +46,7 @@ warehouse & warehouses::getWarehouse(string name) {
 /*
  * Checks to see if any items are out of stock in all warehouses.
  */
-map<string, string> & warehouses::unstockedProducts() {
+map<string, string> & warehouses::printUnstockedProducts() {
 	cout << "Unstocked Products:" << endl;
 
 	// Get fooditem list
@@ -72,7 +76,7 @@ map<string, string> & warehouses::unstockedProducts() {
 /*
  * Checks to see which items are fully stocked (meaning stocked in every warehouse)
  */
-map<string, string> & warehouses::fullystockedProducts() {
+map<string, string> & warehouses::printFullystockedProducts() {
 	cout << "Fully-Stocked Products:" << endl;
 
 	bool stocked;
