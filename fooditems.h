@@ -12,9 +12,8 @@ class fooditems
 		fooditems();
 		void addItem(std::string upc, const item& itm);
 		item& getItem(std::string upc);
-	        //bool contains(std::string upc);
-		std::vector <std::string> InventoryList();
 		std::string getName(std::string upc);
+		std::map<std::string, item> & getItemList();
 
 	private:
 		std::map<std::string, item> *fimap;

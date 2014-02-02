@@ -49,24 +49,22 @@ void warehouses::unstockedProducts() {
 	map<string, string> listOfUnstocked;	// List of unstockeditems, mapping like (upc => name)
 
 
+	map<string, item> itemList = items->getItemList();
+
 	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it) {
 		//it-> first => warehouse.
 
 		//List of the item that the warehouse contains.
 		//myvector = (it->first).InventoryList();
-		vector<string> *myvector = items->InventoryList();
 
-		for (std::vector<string>::iterator element = myvector->begin(); element != myvector->end(); ++element)
+		for (map<string, item>::iterator element = itemList.begin(); element != itemList.end(); ++element)
 		{
 			//If the item is found go to
 			// the next warehouse.
-			if(it->second->inStock(*element))
-			{
+			if(it->second->inStock(element->first))
 				continue;
-			}
-			else{
-				listOfUnstocked[*element] = items->getName(*element);
-			}
+			else
+				listOfUnstocked[element->first] = items->getName(element->first);
 		}
 	  
 	}
@@ -82,18 +80,40 @@ void warehouses::fullystockedProducts() {
 	// will not be added to the list. If it goes through every warehouse and they all have it
 	// then when it reaches the end it will add it to the list.
 
+	bool stocked;
+	// Loop through each item in the fooditems
+	map<string, item> itemList = items->getItemList();
+	for (std::map<string, item>::iterator element = itemList.begin(); element != itemList.end(); ++element) {
+		stocked = true;
 
+		// Loop through each warehouse
+		for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it) {
+			if (!(it->second->inStock(element->first))) {
+				stocked = false;
+				break;
+			}
+		}
+		
+		// Check if it was in stock everywhere
+		if (stocked)
+			listOfFullyStocked[element->first] = items->getName(element->first);
+	}
 
-	//bool fullyStocked = true;
 	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it) {
-		// TODO: Need a way to loop through all of the fooditems, we have access through items, but
-		// don't know what to do after that.
+		//it-> first => warehouse.
+
+		//List of the item that the warehouse contains.
+		//myvector = (it->first).InventoryList();
+		map<string, item> itemList = items->getItemList();
+
+		for (std::map<string, item>::iterator element = itemList.begin(); element != itemList.end(); ++element) {
+			//If the item is found go to
+			// the next warehouse.
+			if(it->second->inStock(element->first))
+				continue;
+			else
+				listOfFullyStocked[element->first] = items->getName(element->first);
+		}
 	  
-	  /*
-	  if (it->second->inStock(upc)){
-	    
-	  }
-	  */
-	      
 	}
 }
