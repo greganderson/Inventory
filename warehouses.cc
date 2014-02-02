@@ -50,24 +50,24 @@ void warehouses::unstockedProducts() {
 
 
 	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it) {
-	  //it-> first => warehouse.
+		//it-> first => warehouse.
 
-	  //List of the item that the warehouse contains.
-	  //myvector = (it->first).InventoryList();
-	  vector<string> myvector = items->InventoryList();
+		//List of the item that the warehouse contains.
+		//myvector = (it->first).InventoryList();
+		vector<string> myvector = items->InventoryList();
 
-	  for (std::vector<string>::iterator element = myvector.begin(); element != myvector.end(); ++element)
-	      {
-		//If the item is found go to
-		// the next warehouse.
-		if(it->second.inStock(*element))
-		  {
-		    continue;
-		  }
-		else{
-		  listOfUnstocked[element] = items->getName(element);
+		for (std::vector<string>::iterator element = myvector.begin(); element != myvector.end(); ++element)
+		{
+			//If the item is found go to
+			// the next warehouse.
+			if(it->second->inStock(*element))
+			{
+				continue;
+			}
+			else{
+				listOfUnstocked[*element] = items->getName(*element);
+			}
 		}
-	      }
 	  
 	}
 }
@@ -89,10 +89,11 @@ void warehouses::fullystockedProducts() {
 		// TODO: Need a way to loop through all of the fooditems, we have access through items, but
 		// don't know what to do after that.
 	  
-	  //
+	  /*
 	  if (it->second->inStock(upc)){
 	    
 	  }
+	  */
 	      
 	}
 }

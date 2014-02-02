@@ -29,7 +29,7 @@ void warehouse::receive(string upc, int amount) {
 	// Add number of items received to current day transactions
 	currentDay += amount;
 
-	int sLife = items->getItem(upc).getShelfLife;
+	int sLife = items->getItem(upc).getShelfLife();
 
 	// Check if inventory item hasn't been created yet
 	if ((*inventory)[upc] == NULL)
