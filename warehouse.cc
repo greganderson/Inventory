@@ -1,5 +1,6 @@
 #include <string>
 #include <queue>
+#include <vector>
 #include <map>
 
 #include "warehouse.h"
@@ -28,7 +29,7 @@ void warehouse::receive(string upc, int amount) {
 	// Add number of items received to current day transactions
 	currentDay += amount;
 
-	int sLife = items->getItem(upc).shelfLife;
+	int sLife = items->getItem(upc).getShelfLife;
 
 	// Check if inventory item hasn't been created yet
 	if ((*inventory)[upc] == NULL)
@@ -59,6 +60,8 @@ void warehouse::request(string upc, int amount) {
 		(*inventory)[upc]->pop();
 	}
 }
+
+
 
 /*
  * Goes through all inventory and reduces the items

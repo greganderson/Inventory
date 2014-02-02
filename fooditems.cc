@@ -1,6 +1,7 @@
 #include <string>
 #include "fooditems.h"
 #include <map>
+#include <iterator>
 
 using namespace std;
 
@@ -27,3 +28,27 @@ item& fooditems::getItem(string upc)
 {
 	return (*fimap)[upc];
 }
+
+
+/*
+ * Returns a list of items.
+ */
+vector<string> fooditems::InventoryList()
+{
+  vector<string> list;
+  string fitem;
+  for (map<string, item >::iterator it = fimap->begin(); it != fimap->end(); ++it) {
+    fitem = it->first;
+    list.push_back(fitem);
+  }
+  return list;
+}
+
+/*
+ *
+ */
+std::string fooditems::getName(std::string upc)
+{
+   return (*fimap)[upc].getName(); 
+
+ }
