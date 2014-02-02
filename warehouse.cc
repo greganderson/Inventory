@@ -15,17 +15,19 @@ using namespace std;
 /*
  * Creates a warehouse with the name given.
  */
-warehouse::warehouse(string _name, fooditems & f, date & d) {
+warehouse::warehouse(string _name, fooditems & f) {
 	name = _name;
 	this->items = &f;
 	busiestDay = 0;
-	this->startDate = &d;
-	busiestDate = new date(startDate->getDate());
 	currentDay = 0;
 	inventory = new map<string, queue<int>* >;
 	daysSinceBusiestDate = 0;
 }
 
+void warehouse::setStartDate(date & d) {
+	this->startDate = &d;
+	this->busiestDate = &d;
+}
 /*
  * Receive the number of items into the warehouse.  If it
  * hasn't been created yet, then it is created.
@@ -80,6 +82,7 @@ void warehouse::clearInventory() {
 
 	// Loop over all of the queues
 	for (map<string, queue<int>* >::iterator it = inventory->begin(); it != inventory->end(); ++it) {
+		// TODO: Make sure this works!
 		count = (it->second)->size();
 		for (int i = 0; i < count; i++) {
 			// Get remaining days
@@ -98,8 +101,9 @@ void warehouse::clearInventory() {
 	// Check if we had a busier day than the busiest seen so far
 	if (currentDay >= busiestDay) {
 		busiestDay = currentDay;
-		for (int i = 0; i < daysSinceBusiestDate; i++)
+		for (int i = 0; i < daysSinceBusiestDate; i++) {
 			busiestDate->advanceDate();
+		}
 		daysSinceBusiestDate = 0;
 	}
 

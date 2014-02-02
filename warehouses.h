@@ -23,14 +23,14 @@ class warehouses
 		date *start;
 
 	public:
-		warehouses(fooditems &, date &);
-		~warehouses();
+		warehouses(fooditems &);
 		void addWarehouse(std::string name);
 		warehouse & getWarehouse(std::string name);
 		std::map<std::string, std::string> & printUnstockedProducts();
 		std::map<std::string, std::string> & printFullystockedProducts();
 		void advanceWarehouses();
 		void printBusiestDays();
+		void setDate(date &);
 
 };
 #endif

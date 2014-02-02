@@ -14,15 +14,18 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
+	cout << "got here" << endl;
+
 	string filename = argv[1];
 	ifstream in(filename.c_str());
 
 	fooditems *fooditems1 = new fooditems();
 
-	date *start_date = new date();
+	date *start_date;
 
 	//The list of the warehouses.
-	warehouses *WH = new warehouses(*fooditems1, *start_date);
+	warehouses *WH = new warehouses(*fooditems1);
+
 
 	while (true) {
 		string line;
@@ -39,8 +42,8 @@ int main(int argc, char* argv[]) {
 		if (tokens.size() != 0) {
 
 			if(tokens[0] == "Start"){
-				delete start_date;
 				start_date = new date(tokens[2]);
+				WH->setDate(*start_date);
 			}
 
 			if (tokens[0] == "FoodItem") {
@@ -61,7 +64,7 @@ int main(int argc, char* argv[]) {
 				}
 				//Make the new Warehouse and tell it what food items it could have.
 				WH->addWarehouse(place);
-				//warehouse Warehouse(place, *fooditems1, *start_date);
+
 				
 			}
 			if(tokens[0] == "Receive:"){
@@ -71,7 +74,6 @@ int main(int argc, char* argv[]) {
 					place += tokens[i] + " ";
 				}
 				WH->getWarehouse(place).receive(tokens[1], atoi((tokens[2]).c_str()));
-			  
 			}
 			if (tokens[0] == "Request:") {
 				string place = "";
@@ -81,8 +83,9 @@ int main(int argc, char* argv[]) {
 				WH->getWarehouse(place).receive(tokens[1], atoi((tokens[2]).c_str()));
 			}
 			//Advance the effective date by one day.
-			if(tokens[0] == "Next")
+			if(tokens[0] == "Next") {
 				WH->advanceWarehouses();
+			}
 
 			if(tokens[0] == "End") {
 			  break;

@@ -29,11 +29,12 @@ class warehouse {
 		int daysSinceBusiestDate;	// Number of days since the last busiest date
 		
 	public:
-		warehouse(std::string, fooditems &, date &);
+		warehouse(std::string, fooditems &);
 		void receive(std::string upc, int amount);
 		void request(std::string upc, int amount);
 		void clearInventory();
 		bool inStock(std::string);
 		void printBusiestDay();
+		void setStartDate(date &);
 };
 #endif

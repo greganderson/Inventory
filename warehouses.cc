@@ -16,24 +16,22 @@ using namespace std;
 /*
  * Creates a list of warehouses.
  */
-warehouses::warehouses(fooditems & f, date & startDate) {
+warehouses::warehouses(fooditems & f) {
 	this->items = &f;
-	this->start = &startDate;
 	whs = new map<string, warehouse*>;
 }
 
-/*
- * Destructs the list of warehouses.
- */
-warehouses::~warehouses() {
-	// TODO: Implement
+void warehouses::setDate(date & d) {
+	this->start = &d;
+	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it)
+		it->second->setStartDate(d);
 }
 
 /*
  * Takes a name of a warehouse and adds it to the list of warehouses.
  */
 void warehouses::addWarehouse(string name) {
-	(*whs)[name] = new warehouse(name, *items, *start);
+	(*whs)[name] = new warehouse(name, *items);
 }
 
 /*

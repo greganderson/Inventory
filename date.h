@@ -9,7 +9,6 @@
 
 class date {
 	public:
-		date();
 		date(int month, int day, int year);
 		date(std::string);
 		std::string getDate();
@@ -17,6 +16,8 @@ class date {
 		void advanceDate();
 		void advanceDay(int);
 		void advanceMonth();
+		void changeDate(std::string);
+
 	private:
 		int month;
 		int day;
