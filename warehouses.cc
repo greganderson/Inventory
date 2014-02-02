@@ -68,6 +68,7 @@ map<string, string> & warehouses::printUnstockedProducts() {
 
 		if (!stocked)
 			cout << element->first << " " << items->getName(element->first) << endl;
+
 	}
 }
 

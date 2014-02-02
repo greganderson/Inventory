@@ -1,0 +1,15 @@
+FoodItem - UPC Code: 0123456789  Shelf life: 2  Name: chestnut puree with vanilla
+FoodItem - UPC Code: 9876543210  Shelf life: 1  Name: the orange box
+Warehouse - Columbus
+Warehouse - Scottsdale
+Start date: 05/01/2010
+Receive: 0123456789 2 Columbus
+Receive: 9876543210 2 Columbus
+Receive: 0123456789 2 Scottsdale
+Receive: 9876543210 2 Scottsdale
+Next day:
+Request: 0123456789 1 Columbus
+Request: 9876543210 1 Columbus
+Request: 0123456789 1 Scottsdale
+Request: 9876543210 1 Scottsdale
+End

@@ -48,8 +48,14 @@ int main(int argc, char* argv[]) {
 			}
 
 			if (tokens[0] == "FoodItem") {
+				// Get name
+				string name = "";
+				for (int i = 9; i < tokens.size(); i++) {
+					name += tokens[i] + " ";
+				}
+
 				//This will add the elements of the item to the food item class.
-				item item1(tokens[4], atoi((tokens[7]).c_str()), tokens[9]);
+				item item1(tokens[4], atoi((tokens[7]).c_str()), name);
 
 				//The list of the food items
 				// fooditems fooditems1;	       
@@ -81,7 +87,7 @@ int main(int argc, char* argv[]) {
 				for (int i = 3; i < tokens.size(); i++) {
 					place += tokens[i] + " ";
 				}
-				WH->getWarehouse(place).receive(tokens[1], atoi((tokens[2]).c_str()));
+				WH->getWarehouse(place).request(tokens[1], atoi((tokens[2]).c_str()));
 			}
 			//Advance the effective date by one day.
 			if(tokens[0] == "Next") {
