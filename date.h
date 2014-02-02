@@ -5,6 +5,7 @@
 
 class date {
 	public:
+		date();
 		date(int month, int day, int year);
 		date(std::string);
 		std::string getDate();

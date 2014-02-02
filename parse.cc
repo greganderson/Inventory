@@ -20,10 +20,10 @@ int main() {
 
 	fooditems fooditems1;
 
-	//The list of the warehouses.
-	warehouses WH(fooditems1);
+	date start_date;
 
-	
+	//The list of the warehouses.
+	warehouses WH(fooditems1, start_date);
 
 	while (true) {
 		string line;
@@ -36,7 +36,14 @@ int main() {
 		copy(istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(tokens));
 		// End of example
 
+
 		if (tokens.size() != 0) {
+
+		        if(tokens[0] == "Start"){
+			  date Date(tokens[2]);
+			  start_date = Date;
+			}
+
 			if (tokens[0] == "FoodItem") {
 				// TODO: Implement
 			  cout << tokens[4] << endl;
@@ -57,8 +64,8 @@ int main() {
 					place += tokens[i] + " ";
 				}
 				//Make the new Warehouse and tell it what food items it could have.
-				warehouse Warehouse(place, fooditems1);
-			        
+				warehouse Warehouse(place, fooditems1, start_date);
+				
 			}
 			if(tokens[0] == "Receive:"){
 			        //This is not working because the get function is constant.

@@ -5,6 +5,17 @@
 using namespace std;
 
 /*
+ * Creates default constructor.
+ */
+date::date()
+{
+	month = 0;
+	day = 0;
+	year = 0;
+
+}
+
+/*
  * Creates a new date.
  */
 date::date(int _month, int _day, int _year) {
