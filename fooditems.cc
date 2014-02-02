@@ -1,3 +1,7 @@
+/*
+ * Written by Greg Anderson and Jesus Zarate.
+ */
+
 #include <string>
 #include "fooditems.h"
 #include <map>
