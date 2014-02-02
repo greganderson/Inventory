@@ -54,9 +54,9 @@ void warehouses::unstockedProducts() {
 
 		//List of the item that the warehouse contains.
 		//myvector = (it->first).InventoryList();
-		vector<string> myvector = items->InventoryList();
+		vector<string> *myvector = items->InventoryList();
 
-		for (std::vector<string>::iterator element = myvector.begin(); element != myvector.end(); ++element)
+		for (std::vector<string>::iterator element = myvector->begin(); element != myvector->end(); ++element)
 		{
 			//If the item is found go to
 			// the next warehouse.
