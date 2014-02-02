@@ -13,9 +13,6 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-
-	cout << "got here" << endl;
-
 	string filename = argv[1];
 	ifstream in(filename.c_str());
 

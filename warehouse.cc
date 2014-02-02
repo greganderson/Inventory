@@ -82,7 +82,6 @@ void warehouse::clearInventory() {
 
 	// Loop over all of the queues
 	for (map<string, queue<int>* >::iterator it = inventory->begin(); it != inventory->end(); ++it) {
-		// TODO: Make sure this works!
 		count = (it->second)->size();
 		for (int i = 0; i < count; i++) {
 			// Get remaining days
