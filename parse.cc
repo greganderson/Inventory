@@ -12,8 +12,9 @@
 
 using namespace std;
 
-int main() {
-	string filename = "data/data1.txt";
+int main(string argc, char* argv[]) {
+
+        string filename = argv[1];
 	ifstream in(filename.c_str());
 
 
@@ -91,32 +92,6 @@ int main() {
 		WH.unstockedProducts();
 
 		WH.fullystockedProducts();
-
-		  //Queue<string> *q = new queue<string>;
-		  //map<string, queue<string>* > *mq = new map<string, queue<string>* >;
- 
-		  //q->push("Hello");
- 
-		  //mq->insert(pair<string, queue<string>* >("whatever", q));
- 
-		  // for (map<string, fooditems >::iterator it = items->begin(); it != items->end(); ++it) {
-		  //   cout << "[" << it->first << ", " << (it->second).getName() << "]" << endl;
-		/*
-		for (int i = 0; i < tokens.size(); i++) {
-			if (tokens[i] == "FoodItem") {
-				cout << "UPC: " << tokens[4] << endl;
-				cout << "Shelf Life: " << tokens[7] << endl;
-				cout << "Name: ";
-				for (int j = 9; j < tokens.size(); j++)
-					cout << tokens[j] << " ";
-				cout << endl;
-			}
-		  // }
- 
-		  //cout << (*items)["0353264991"].getName() << endl;
- 
-		}
-		*/
 
 		if (in.fail())
 			break;
