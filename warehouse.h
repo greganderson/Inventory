@@ -30,5 +30,6 @@ class warehouse {
 		void request(std::string upc, int amount);
 		void clearInventory();
 		bool inStock(std::string);
+		void printBusiestDay();
 };
 #endif

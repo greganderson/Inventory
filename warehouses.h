@@ -23,8 +23,8 @@ class warehouses
 		~warehouses();
 		void addWarehouse(std::string name);
 		warehouse & getWarehouse(std::string name);
-		std::map<std::string, std::string> & unstockedProducts();
-		std::map<std::string, std::string> & fullystockedProducts();
+		std::map<std::string, std::string> & printUnstockedProducts();
+		std::map<std::string, std::string> & printFullystockedProducts();
 
 };
 #endif

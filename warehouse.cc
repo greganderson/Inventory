@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <queue>
 #include <vector>
@@ -116,4 +117,11 @@ bool warehouse::inStock(string upc) {
 
 	// Item is out of stock
 	return false;
+}
+
+/*
+ * Prints out the busiest day.
+ */
+void warehouse::printBusiestDay() {
+	cout << name << " " << busiestDate->getDate() << " " << busiestDay << endl;
 }
