@@ -88,7 +88,9 @@ int main() {
 
 		//************REPORT*************\\
 		//Unstocked products
-		
+		WH.unstockedProducts(fooditems1);
+
+		WH.fullystockedProducts(fooditems1);
 
 		  //Queue<string> *q = new queue<string>;
 		  //map<string, queue<string>* > *mq = new map<string, queue<string>* >;

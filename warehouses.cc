@@ -42,7 +42,18 @@ warehouse & warehouses::getWarehouse(string name) {
 /*
  * Returns the warehouse asked for.
  */
-void::unstockedProducts(fooditems items) {
+void warehouses::unstockedProducts(fooditems & items) {
   //For every item check in every warehouse's items list to see if it 
   //exists.
+  
+  
+}
+
+/*
+ * Returns the warehouse asked for.
+ */
+void warehouses::fullystockedProducts(fooditems & items) {
+  //For every item check in every warehouse's items list to see if it 
+  //exists.
+  
 }
