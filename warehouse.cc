@@ -98,3 +98,19 @@ void warehouse::clearInventory() {
 	// Reset the transaction counter
 	currentDay = 0;
 }
+
+/*
+ * Returns true if the item is in stock.
+ */
+bool warehouse::inStock(string upc) {
+	// If the inventory doesn't exist, return false
+	if ((*inventory)[upc] == NULL)
+		return false;
+
+	// Check if item is in stock
+	if ((*inventory)[upc]->size() > 0)
+		return true;
+
+	// Item is out of stock
+	return false;
+}

@@ -40,20 +40,28 @@ warehouse & warehouses::getWarehouse(string name) {
 }
 
 /*
- * Returns the warehouse asked for.
+ * Checks to see if any items are out of stock in all warehouses.
  */
-void warehouses::unstockedProducts(fooditems & items) {
-  //For every item check in every warehouse's items list to see if it 
-  //exists.
-  
-  
+void warehouses::unstockedProducts() {
+	//For every item check in every warehouse's items list to see if it 
+	//exists.
+
+	map<string, string> listOfUnstocked;	// List of unstockeditems, mapping like (upc => name)
+
+	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it) {
+		// TODO: Implement
+	}
 }
 
 /*
- * Returns the warehouse asked for.
+ * Checks to see which items are fully stocked (meaning stocked in every warehouse)
  */
-void warehouses::fullystockedProducts(fooditems & items) {
-  //For every item check in every warehouse's items list to see if it 
-  //exists.
-  
+void warehouses::fullystockedProducts() {
+	map<string, string> listOfFullyStocked;	// List of fully stocked items, mapping like (upc => name)
+
+	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it) {
+		// TODO: Need a way to loop through all of the fooditems, we have access through items, but
+		// don't know what to do after that.
+		if (it->second->inStock(upc))
+	}
 }

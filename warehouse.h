@@ -29,5 +29,6 @@ class warehouse {
 		void receive(std::string upc, int amount);
 		void request(std::string upc, int amount);
 		void clearInventory();
+		bool inStock(std::string);
 };
 #endif
