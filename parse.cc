@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int main(string argc, char* argv[]) {
+int main(int argc, char* argv[]) {
 
         string filename = argv[1];
 	ifstream in(filename.c_str());
@@ -89,9 +89,9 @@ int main(string argc, char* argv[]) {
 
 		//************REPORT*************\\
 		//Unstocked products
-		WH.unstockedProducts();
+		WH.printUnstockedProducts();
 
-		WH.fullystockedProducts();
+		WH.printFullystockedProducts();
 
 		if (in.fail())
 			break;
