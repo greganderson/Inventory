@@ -65,20 +65,26 @@ int main(int argc, char* argv[]) {
 				
 			}
 			if(tokens[0] == "Receive:"){
-			        //This is not working because the get function is constant.
-			        WH->getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
+				//This is not working because the get function is constant.
+				string place = "";
+				for (int i = 3; i < tokens.size(); i++) {
+					place += tokens[i] + " ";
+				}
+				WH->getWarehouse(place).receive(tokens[1], atoi((tokens[2]).c_str()));
 			  
 			}
 			if (tokens[0] == "Request:") {
-				//Not working because get is constant.
-			        WH->getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
+				string place = "";
+				for (int i = 3; i < tokens.size(); i++) {
+					place += tokens[i] + " ";
+				}
+				WH->getWarehouse(place).receive(tokens[1], atoi((tokens[2]).c_str()));
 			}
 			//Advance the effective date by one day.
 			if(tokens[0] == "Next")
 				WH->advanceWarehouses();
 
-			if(tokens[0] == "End:") {
-			  cout << "got here" << endl;
+			if(tokens[0] == "End") {
 			  break;
 			}
 		}
