@@ -14,17 +14,15 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-        string filename = argv[1];
+	string filename = argv[1];
 	ifstream in(filename.c_str());
 
+	fooditems *fooditems1 = new fooditems();
 
-
-	fooditems fooditems1;
-
-	date start_date;
+	date *start_date = new date();
 
 	//The list of the warehouses.
-	warehouses WH(fooditems1, start_date);
+	warehouses *WH = new warehouses(*fooditems1, *start_date);
 
 	while (true) {
 		string line;
@@ -40,24 +38,21 @@ int main(int argc, char* argv[]) {
 
 		if (tokens.size() != 0) {
 
-		        if(tokens[0] == "Start"){
-			  date Date(tokens[2]);
-			  start_date = Date;
+			if(tokens[0] == "Start"){
+				delete start_date;
+				start_date = new date(tokens[2]);
 			}
 
 			if (tokens[0] == "FoodItem") {
-				// TODO: Implement
-			  cout << tokens[4] << endl;
+				//This will add the elements of the item to the food item class.
+				item item1(tokens[4], atoi((tokens[7]).c_str()), tokens[9]);
 
-			  //This will add the elements of the item to the food item class.
-			  item item1(tokens[4], atoi((tokens[7]).c_str()), tokens[9]);
-	        
-			  //The list of the food items
-			  // fooditems fooditems1;	       
+				//The list of the food items
+				// fooditems fooditems1;	       
 
-			  //Add to the Fooditems class.
-			  fooditems1.addItem(tokens[4], item1);
-			  
+				//Add to the Fooditems class.
+				fooditems1->addItem(tokens[4], item1);
+
 			}
 			if (tokens[0] == "Warehouse") {
 				string place = "";
@@ -65,39 +60,56 @@ int main(int argc, char* argv[]) {
 					place += tokens[i] + " ";
 				}
 				//Make the new Warehouse and tell it what food items it could have.
-				warehouse Warehouse(place, fooditems1, start_date);
+				WH->addWarehouse(place);
+				//warehouse Warehouse(place, *fooditems1, *start_date);
 				
 			}
 			if(tokens[0] == "Receive:"){
 			        //This is not working because the get function is constant.
-			        WH.getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
+			        WH->getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
 			  
-			  }
+			}
 			if (tokens[0] == "Request:") {
 				//Not working because get is constant.
-			        WH.getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
+			        WH->getWarehouse(tokens[3]).receive(tokens[1], atoi((tokens[2]).c_str()));
 			}
 			//Advance the effective date by one day.
-			if(tokens[0] == "Next"){
-			        //
-			  
-			}
-			if(tokens[0] == "End:"){
+			if(tokens[0] == "Next")
+				WH->advanceWarehouses();
+
+			if(tokens[0] == "End:") {
+			  cout << "got here" << endl;
 			  break;
 			}
 		}
-
-		//************REPORT*************\\
-		//Unstocked products
-		WH.printUnstockedProducts();
-
-		WH.printFullystockedProducts();
 
 		if (in.fail())
 			break;
 	}
 
 	in.close();
+
+	/************REPORT*************/
+	cout << "Report by Greg Anderson and Jesus Zarate\n" << endl;
+
+	WH->printUnstockedProducts();
+
+	cout << endl;
+
+	WH->printFullystockedProducts();
+
+	cout << endl;
+
+	cout << "Busiest Days:" << endl;
+
+	WH->printBusiestDays();
+
+	delete start_date;
+	delete fooditems1;
+	delete WH;
+	start_date = NULL;
+	fooditems1 = NULL;
+	WH = NULL;
 
 	return 0;
 }

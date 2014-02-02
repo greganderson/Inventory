@@ -17,9 +17,9 @@ using namespace std;
  */
 warehouse::warehouse(string _name, fooditems & f, date & d) {
 	name = _name;
-	*items = f;
+	this->items = &f;
 	busiestDay = 0;
-	*startDate = d;
+	this->startDate = &d;
 	busiestDate = new date(startDate->getDate());
 	currentDay = 0;
 	inventory = new map<string, queue<int>* >;

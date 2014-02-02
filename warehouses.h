@@ -29,6 +29,8 @@ class warehouses
 		warehouse & getWarehouse(std::string name);
 		std::map<std::string, std::string> & printUnstockedProducts();
 		std::map<std::string, std::string> & printFullystockedProducts();
+		void advanceWarehouses();
+		void printBusiestDays();
 
 };
 #endif

@@ -17,8 +17,8 @@ using namespace std;
  * Creates a list of warehouses.
  */
 warehouses::warehouses(fooditems & f, date & startDate) {
-	*items = f;
-	*start = startDate;
+	this->items = &f;
+	this->start = &startDate;
 	whs = new map<string, warehouse*>;
 }
 
@@ -99,4 +99,20 @@ map<string, string> & warehouses::printFullystockedProducts() {
 		if (stocked)
 			cout << element->first << " " << items->getName(element->first) << endl;
 	}
+}
+
+/*
+ * Clear each warehouses inventory.
+ */
+void warehouses::advanceWarehouses() {
+	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it)
+		it->second->clearInventory();
+}
+
+/*
+ * Prints the busiest day for each warehouse
+ */
+void warehouses::printBusiestDays() {
+	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it)
+		it->second->printBusiestDay();
 }
