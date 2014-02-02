@@ -86,6 +86,10 @@ int main() {
 			}
 		}
 
+		//************REPORT*************\\
+		//Unstocked products
+		
+
 		  //Queue<string> *q = new queue<string>;
 		  //map<string, queue<string>* > *mq = new map<string, queue<string>* >;
  

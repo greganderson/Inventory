@@ -23,6 +23,7 @@ class warehouses
 		~warehouses();
 		void addWarehouse(std::string name);
 		warehouse & getWarehouse(std::string name);
+		void unstockedProducts(fooditems items);
 
 };
 #endif

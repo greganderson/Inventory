@@ -38,3 +38,11 @@ void warehouses::addWarehouse(string name) {
 warehouse & warehouses::getWarehouse(string name) {
 	return *(*whs)[name];
 }
+
+/*
+ * Returns the warehouse asked for.
+ */
+void::unstockedProducts(fooditems items) {
+  //For every item check in every warehouse's items list to see if it 
+  //exists.
+}
