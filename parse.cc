@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
 			}
 
 			if(tokens[0] == "End") {
-			  break;
+				break;
 			}
 		}
 
