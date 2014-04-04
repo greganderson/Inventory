@@ -17,18 +17,20 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+  
 	string filename = argv[1];
 	ifstream in(filename.c_str());
 
 	fooditems *fooditems1 = new fooditems();
 
 	date *start_date;
-
+	
 	//The list of the warehouses.
 	warehouses *WH = new warehouses(*fooditems1);
-
-
+	int C = 0;
+	bool process_requests = false;
 	while (true) {
+
 		string line;
 		getline(in, line);
 
@@ -75,27 +77,54 @@ int main(int argc, char* argv[]) {
 				
 			}
 			if(tokens[0] == "Receive:"){
-				//This is not working because the get function is constant.
 				string place = "";
 				for (int i = 3; i < tokens.size(); i++) {
 					place += tokens[i] + " ";
+				}
+
+				if(place == ("Chandler ") && tokens[1] == "0814194965"){
+				  string here;
 				}
 				WH->getWarehouse(place).receive(tokens[1], atoi((tokens[2]).c_str()));
 			}
 			if (tokens[0] == "Request:") {
+
 				string place = "";
 				for (int i = 3; i < tokens.size(); i++) {
 					place += tokens[i] + " ";
 				}
-				WH->getWarehouse(place).request(tokens[1], atoi((tokens[2]).c_str()));
+				
+				//Store the requests in temporary container 
+				// while the receives are being processed.
+				//Uncomment for version 1.2
+				WH->pendingRequest(place, tokens[1], atoi((tokens[2]).c_str()));
+
+				//if(place == ("Chandler ") && tokens[1] == "0814194965"){
+				//   string here;
+				//}
+				
+				//Uncomment for the version of warehouse before update which is version 1.1.
+				//WH->getWarehouse(place).request(tokens[1], atoi((tokens[2]).c_str()));
 			}
 			//Advance the effective date by one day.
 			if(tokens[0] == "Next") {
-				WH->advanceWarehouses();
+			  
+			  //We process the request at this point
+			  //Uncomment for version 1.2
+			  WH->processRequests();
+
+			  //Clear the inventory of expired items and advance day.
+			  WH->advanceWarehouses();
 			}
 
 			if(tokens[0] == "End") {
-				break;
+
+			  //Comment out for version of warehouse before update which is version 1.1.
+			  //Uncomment for version 1.2
+			  WH->processRequests();
+
+			  WH->endOfInventory();
+			  break;
 			}
 		}
 
@@ -120,12 +149,13 @@ int main(int argc, char* argv[]) {
 
 	WH->printBusiestDays();
 
-	delete start_date;
-	delete fooditems1;
-	delete WH;
 	start_date = NULL;
 	fooditems1 = NULL;
 	WH = NULL;
+
+	delete start_date;
+	delete fooditems1;
+	delete WH;
 
 	return 0;
 }

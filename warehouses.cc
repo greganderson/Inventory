@@ -19,9 +19,10 @@ using namespace std;
 warehouses::warehouses(fooditems & f) {
 	this->items = &f;
 	whs = new map<string, warehouse*>;
+	requests = new map<string, queue<Request>* >;
 }
 
-void warehouses::setDate(date & d) {
+void warehouses::setDate(date &d) {
 	this->start = &d;
 	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it)
 		it->second->setStartDate(d);
@@ -42,6 +43,45 @@ warehouse & warehouses::getWarehouse(string name) {
 }
 
 /*
+ * Requests waiting to be processed after the receives 
+ * have been processed.
+ */
+void warehouses::pendingRequest(string wh, string upc, int amount){
+
+  if((*requests)[wh] == NULL){
+    (*requests)[wh] = new queue<Request>;
+  }
+
+  Request *request = new Request(wh, upc, amount);
+
+  //Add the request to the queue of requests for that warehouse.
+  (*requests)[wh]->push(*request);
+
+  int i = (*requests)[wh]->size();
+  string hello;
+
+}
+
+/*
+ * Process the all of the requests for each warehouse
+ */
+void warehouses::processRequests(){
+
+  for(map<string, queue<Request>* >::iterator it = requests->begin(); it != requests -> end(); ++it){
+    // Pop the request off the queue
+    queue<Request>* rqst = (it->second);
+    int i = rqst->size();
+    
+    while(!rqst->empty()){
+      Request r = rqst->front();
+      rqst->pop();
+      getWarehouse(it->first).request(r.getUpc(), r.getAmount());
+    }
+  }
+
+}
+
+/*
  * Checks to see if any items are out of stock in all warehouses.
  */
 map<string, string> & warehouses::printUnstockedProducts() {
@@ -55,15 +95,16 @@ map<string, string> & warehouses::printUnstockedProducts() {
 	// Loop through all items
 	for (map<string, item>::iterator element = itemList.begin(); element != itemList.end(); ++element) {
 		stocked = false;
-
+		
 		// Loop through all warehouses
 		for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it) {
 
 			// Check if item is in stock
 			if (it->second->inStock(element->first)) {
-				stocked = true;
-				break;
+			  stocked = true;
+			  break;
 			}
+
 		}
 
 		if (!stocked)
@@ -106,6 +147,14 @@ map<string, string> & warehouses::printFullystockedProducts() {
 void warehouses::advanceWarehouses() {
 	for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it)
 		it->second->clearInventory();
+}
+
+/*
+ * Updates the last day
+ */
+void warehouses::endOfInventory(){
+  for (map<string, warehouse*>::iterator it = whs->begin(); it != whs->end(); ++it)
+    it->second->end();  
 }
 
 /*
