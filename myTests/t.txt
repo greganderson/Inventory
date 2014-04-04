@@ -1,0 +1,18 @@
+FoodItem - UPC Code: 0000000002  Shelf life: 2 Name: the orange box
+FoodItem - UPC Code: 0000000003  Shelf life: 2 Name: apple
+FoodItem - UPC Code: 0000000004  Shelf life: 2 Name: krankis
+FoodItem - UPC Code: 0000000005  Shelf life: 1 Name: berry
+Warehouse - Columbus
+Warehouse - Toledo
+Start date: 05/01/2010
+Receive: 0000000003 1 Columbus
+Receive: 0000000003 1 Toledo
+Receive: 0000000004 1 Toledo
+Next day:
+Receive: 0000000004 1 Columbus
+Next day:
+Receive: 0000000005 1 Columbus
+Next day:
+End
+
+//No products in stock

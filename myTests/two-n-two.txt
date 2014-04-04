@@ -1,0 +1,23 @@
+FoodItem - UPC Code: 0000000001  Shelf life: 20  Name: chestnut puree with vanilla
+FoodItem - UPC Code: 0000000002  Shelf life: 20  Name: the orange box
+FoodItem - UPC Code: 0000000003  Shelf life: 20  Name: apple
+FoodItem - UPC Code: 0000000004  Shelf life: 20  Name: Krankis
+Warehouse - Columbus
+Warehouse - Toledo
+Start date: 05/01/2010
+Receive: 0000000001 2 Columbus
+Receive: 0000000002 2 Columbus
+Receive: 0000000003 2 Columbus
+Receive: 0000000004 2 Columbus
+Next day:
+Receive: 0000000003 2 Toledo
+Receive: 0000000004 2 Toledo
+Next day:
+Request: 0000000001 1 Columbus
+Request: 0000000002 1 Columbus
+Request: 0000000003 1 Columbus
+Request: 0000000004 1 Columbus
+
+End
+
+//Two fully stocked and two fully unstocked
